@@ -93,14 +93,24 @@ const STORE = [
       "Pizza"
     ],
     correctAnswer: 'A cheese pita'
+  },
+  {
+    question: 'What do they call the "Office Olympics" where Kevin and Phyllis race with a box of paper attached to their feet?',
+    answers: [
+      'Flonkerton',
+      'Office Olympics',
+      'Floggerton',
+      'Race '
+    ],
+    correctAnswer: 'Flonkerton'
   }
 ];
 
-//variables to store the quiz score and question number information
+//creat variables to store quiz score and question number
 let score = 0;
 let questionNumber = 0;
 
-//template to generate each question
+//create question
 function generateQuestion() {
   if (questionNumber < STORE.length) {
     return createThing(questionNumber);
@@ -111,22 +121,19 @@ function generateQuestion() {
   }
 }
 
-//increments the number value of the "score" variable by one
-//and updates the "score" number text in the quiz view
+//updates score number by 1
 function updateScore() {
   score++;
   $('.score').text(score);
 }
 
-//increments the number value of the "question number" variable by one
-//and updates the "question number" text in the quiz view
+//updates the question number by 1
 function updateQuestionNumber() {
   questionNumber++;
   $('.questionNumber').text(questionNumber + 1);
 }
 
-//resets the text value of the "question number" and "score" variables
-//and updates their repective text in the quiz view
+//resets the text value of "question number" and "score" variables
 function resetStats() {
   score = 0;
   questionNumber = 0;
@@ -134,7 +141,7 @@ function resetStats() {
   $('.questionNumber').text(0);
 }
 
-//begins the quiz
+//start quiz
 function startQuiz() {
   $('.altBox').hide();
   $('.startQuiz').on('click', '.startButton', function (event) {
@@ -145,10 +152,9 @@ function startQuiz() {
   });
 }
 
-//submits a selected answer and checks it against the correct answer
-//runs answer functions accordingly
+//submits selected answer then checks it against the correct answer
 function submitAnswer() {
-  $('.jungleBox').on('submit', function (event) {
+  $('.outsideBox').on('submit', function (event) {
     event.preventDefault();
     $('.altBox').hide();
     $('.response').show();
@@ -184,8 +190,8 @@ function createThing(questionIndex) {
   return formMaker;
 }
 
-//resulting feedback if a selected answer is correct
-//increments user score by one
+//feedback if is correct
+//increments score by one
 function correctAnswer() {
   $('.response').html(
     `<h3>That is true.</h3>
@@ -196,7 +202,7 @@ function correctAnswer() {
   updateScore();
 }
 
-//resulting feedback if a selected answer is incorrect
+//feedback if answer is wrong
 function wrongAnswer() {
   $('.response').html(
     `<h3>FALSE.</h3>
@@ -207,7 +213,7 @@ function wrongAnswer() {
   );
 }
 
-//generates the next question
+//generates next question
 function nextQuestion() {
   $('.jungleBox').on('click', '.nextButton', function (event) {
     $('.altBox').hide();
@@ -217,7 +223,7 @@ function nextQuestion() {
   });
 }
 
-//determines final score and feedback at the end of the quiz
+//final score and feedback at end of quiz
 function finalScore() {
   $('.final').show();
 
@@ -238,8 +244,7 @@ function finalScore() {
   const bad = [
     'Why did you even try',
     'images/loser_michael.png',
-    'Michael saying Loser',
-    ''
+    'Michael saying Loser'
   ];
 
   if (score >= 8) {
@@ -260,7 +265,7 @@ function finalScore() {
 
 //takes user back to the starting view to restart the quiz
 function restartQuiz() {
-  $('.jungleBox').on('click', '.restartButton', function (event) {
+  $('.outsideBox').on('click', '.restartButton', function (event) {
     event.preventDefault();
     resetStats();
     $('.altBox').hide();

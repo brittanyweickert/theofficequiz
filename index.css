@@ -34,7 +34,7 @@
     font-size: 1.3em;
   }
   
-  .jungleBox {
+  .outsideBox {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -110,7 +110,7 @@
       width: 45%;
     }
   
-    .jungleBox {
+    .outsideBox {
       width: 90%;
       height: 31em;
       margin-top: 1em;
@@ -152,7 +152,7 @@
   }
   
   @media only screen and (min-width: 550px) {
-    .jungleBox {
+    .outsideBox {
       width: 29.5em;
       height: 31.5em;
       padding-top: 2.6em;
@@ -188,7 +188,7 @@
       font-size: 1.3em;
     }
   
-    .jungleBox {
+    .outsideBox {
       width: 35em;
       height: 38em;
     }
