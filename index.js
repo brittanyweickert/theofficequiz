@@ -215,7 +215,7 @@ function wrongAnswer() {
 
 //generates next question
 function nextQuestion() {
-  $('.jungleBox').on('click', '.nextButton', function (event) {
+  $('.outsideBox').on('click', '.nextButton', function (event) {
     $('.altBox').hide();
     $('.questionBox').show();
     updateQuestionNumber();
