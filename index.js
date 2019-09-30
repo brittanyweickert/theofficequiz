@@ -111,7 +111,7 @@ let score = 0;
 let questionNumber = 0;
 
 //create question
-function generateQuestion() {
+function createQuestion() {
   if (questionNumber < STORE.length) {
     return createThing(questionNumber);
   } else {
@@ -148,7 +148,7 @@ function startQuiz() {
     $('.startQuiz').hide();
     $('.questionNumber').text(1);
     $('.questionBox').show();
-    $('.questionBox').prepend(generateQuestion());
+    $('.questionBox').prepend(createQuestion());
   });
 }
 
@@ -183,20 +183,19 @@ function createThing(questionIndex) {
     $(`<label class="sizeMe" for="${answerIndex}">
         <input class="radio" type="radio" id="${answerIndex}" value="${answerValue}" name="answer" required>
         <span>${answerValue}</span>
-      </label>
-      `).appendTo(fieldSelector);
+      </label>`).appendTo(fieldSelector);
   });
   $(`<button type="submit" class="submitButton button"> Submit</button > `).appendTo(fieldSelector);
   return formMaker;
 }
 
-//feedback if is correct
-//increments score by one
+//feedback
+//if correct increments score by one
 function correctAnswer() {
   $('.response').html(
     `<h3>That is true.</h3>
     <img src="images/erin_fistpump.gif" alt="erin fist pumping gif" class="images" width="200px">
-      <p class="sizeMe">An office is a place where dreams come true.</p>
+      <p class="scoreCard">An office is a place where dreams come true.</p>
       <button type="button" class="nextButton button">Next</button>`
   );
   updateScore();
@@ -207,8 +206,8 @@ function wrongAnswer() {
   $('.response').html(
     `<h3>FALSE.</h3>
     <img src="images/why_michael.png" alt="dissapointed dwight face" class="images" width="200px">
-    <p class="sizeMe">It's actually:</p>
-    <p class="sizeMe">${STORE[questionNumber].correctAnswer}</p>
+    <p class="scoreCard">It's actually:</p>
+    <p class="scoreCard">${STORE[questionNumber].correctAnswer}</p>
     <button type="button" class="nextButton button">Next</button>`
   );
 }
@@ -219,7 +218,7 @@ function nextQuestion() {
     $('.altBox').hide();
     $('.questionBox').show();
     updateQuestionNumber();
-    $('.questionBox form').replaceWith(generateQuestion());
+    $('.questionBox form').replaceWith(createQuestion());
   });
 }
 
@@ -258,7 +257,7 @@ function finalScore() {
     `<h3>${array[0]}</h3>
       <img src="${array[1]}" alt="${array[2]}" class="images">
         <h3>Your score is ${score} / 10</h3>
-        <p class="sizeMe">${array[3]}</p>
+        <p class="scoreCard">${array[3]}</p>
         <button type="submit" class="restartButton button">Restart</button>`
   );
 }
@@ -276,7 +275,7 @@ function restartQuiz() {
 //runs the functions
 function makeQuiz() {
   startQuiz();
-  generateQuestion();
+  createQuestion();
   submitAnswer();
   nextQuestion();
   restartQuiz();
